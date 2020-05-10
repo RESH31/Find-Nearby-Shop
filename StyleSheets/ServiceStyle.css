@@ -1,0 +1,18 @@
+﻿th, td {
+    padding: 5px;
+    text-align: left;
+}
+
+.tablerow, .tablecolumn {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.tablecolumn {
+    width: 33%;
+}
+
+th {
+    vertical-align: top;
+    text-align: left;
+}

@@ -1,0 +1,312 @@
+﻿@using PagedList
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Service";
+}
+
+@model IPagedList<TSL__Quiz.Models.ProductDetail>
+
+
+@{
+    ViewBag.Title = "DisplaySelection";
+}
+
+@{
+    double latitude = (double)ViewData["latitude"];
+    double longitude = (double)ViewData["longitude"];
+    string option = (string)ViewData["option"];
+    double searchkey = (double)ViewData["search"];
+    string message = (string)ViewData["msg"];
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="~/StyleSheets/ServiceStyle.css" rel="stylesheet" />
+
+
+    @{ if (@option == "Book")
+        {
+            <style>
+                .backgroundImage {
+                    background-image: url("../Content/Book.jpg");
+                    color: midnightblue;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+            </style>
+        }
+        else if (@option == "Food")
+        {
+            <style>
+                .backgroundImage {
+                    background-image: url("../Content/Food.jpg");
+                    color: midnightblue;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+            </style>
+        }
+        else
+        {
+            <style>
+                .backgroundImage {
+                    background-image: url("../Content/Desserts.jpg");
+                    color: midnightblue;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+            </style>
+        }
+    }
+
+    
+    <SCRIPT language=Javascript>
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 46) {
+                alert("Allow Only Numbers");
+                return false;
+            }
+            return true;
+        }
+    </SCRIPT>
+</head>
+
+<body class="backgroundImage">
+    <br />
+
+    @{
+        if (@message != null)
+        {@message}
+    }
+    <div style="float:right">
+        @using (Html.BeginForm("Service", "Home", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td><input type="text" name="searchkey" onkeypress="return isNumberKey(event)" />&nbsp&nbsp&nbsp</td>
+                    <td><input type="submit" value="Search By Distance" name="Search" /></td>
+                    <td><input type="hidden" name="option" value="@option" /></td>
+                    <td><input type="hidden" name="latitude" value="@latitude" /></td>
+                    <td><input type="hidden" name="longitude" value="@longitude" /></td>
+
+
+                </tr>
+            </table>
+        }
+    </div>
+
+
+    <br />
+    <table style="width:100%">
+
+        @foreach (var item in Model)
+        {
+
+            <tr class="tablerow">
+                <td class="tablecolumn">
+
+                    <table style="border:1px solid white">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().API_Status)
+                            </th>
+                            @* <td>&nbsp;</td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.API_Status)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().AdminRemarks)
+                            </th>
+                            @* <td>&nbsp;</td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.AdminRemarks)
+                                </td>*@
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().Category)
+                            </th>
+                            @* <td>&nbsp;</td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().ContactEmail)
+                            </th>
+                            @* <td>&nbsp;</td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContactEmail)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().ContactInfo)
+                            </th>
+                            @* <td>&nbsp;</td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContactInfo)
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().ContactNumber)
+                            </th>
+                            @*<td>&nbsp;</td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContactNumber)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().ContactStatus)
+                            </th>
+                            @*<td>&nbsp;</td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContactStatus)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().Distance)
+                            </th>
+                            @*<td>&nbsp;</td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Distance)
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+                <td class="tablecolumn">
+                    <table>
+
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().PostalCode)
+                            </th>
+                            @* <td>&nbsp;</td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PostalCode)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().SubFilter)
+                            </th>
+                            @* <td>&nbsp;</td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SubFilter)
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().OpeningHours)
+                            </th>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OpeningHours)
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+                <td class="tablecolumn">
+                    <table style="border:1px solid white">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().EatBookArticle)
+                            </th>
+                            @*<td>&nbsp;</td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EatBookArticle)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().EntryID)
+                            </th>
+                            @*<td>&nbsp;</td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EntryID)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().EntryAddress)
+                            </th>
+                            @*<td>&nbsp;</td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EntryAddress)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().EntryDescription)
+                            </th>
+                            @*<td>&nbsp;</td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EntryDescription)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().EntryName)
+                            </th>
+                            @* <td>&nbsp;</td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EntryName)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().FacebookPage)
+                            </th>
+                            @*<td>&nbsp;</td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FacebookPage)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().Instagram)
+                            </th>
+                            @*<td>&nbsp;</td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Instagram)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().MasterCategory)
+                            </th>
+                            @*<td>&nbsp;</td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MasterCategory)
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+        }
+
+    </table>
+    @Html.PagedListPager(Model, page => Url.Action("Service", new { option, latitude, longitude, page, searchkey }))
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "TSL Quiz";
+    string option = (string)ViewData["option"];
+}
+@using TSL__Quiz.Models
+@model LocationDetails
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            input[type=submit] {
+                background-color: midnightblue;
+                width: 10em;
+                height: 5em;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-family:'Calisto MT';
+                font-size:x-large;
+                margin: 3px 2px;
+                cursor: pointer;
+                border-radius: 100%;
+                -webkit-transition-duration: 0.4s; /* Safari */
+                transition-duration: 0.4s;
+            }
+        </style>
+
+        <script>
+            function showlocation()
+            {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(callback);
+                }
+                else
+                {
+                document.getElementById('latitude').value = -1;
+                document.getElementById('longitude').value = -1;
+                }
+            }
+
+            function callback(position) {
+                document.getElementById('latitude').value = position.coords.latitude;
+                document.getElementById('longitude').value = position.coords.longitude;
+            }
+
+
+/**/</script>
+
+    </head>
+    <body onload="showlocation()" style="background-image:url(../../Content/Welcome.jpg);margin-top:7%">
+        @using (Html.BeginForm("Service", "Home", FormMethod.Post))
+        {
+        <table align="center">
+            <tr>
+                <td><input type="submit" name="option" value="Book" onclick="showlocation" /></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" name="option" value="Food" /></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><input type="submit" name="option" value="Desserts" /></td>
+            </tr>
+            <tr><td><input type="hidden" id="latitude" name="latitude" /></td></tr>
+            <tr>
+                <td><input type="hidden" id="longitude" name="longitude" /></td>
+            </tr>
+           
+        </table>
+        }
+
+    </body>
+    </html>
+
+
+
+
+
+
+
+
